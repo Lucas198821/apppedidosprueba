@@ -1,0 +1,424 @@
+<html lang="es"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLESS Pizza | Web Menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none;  scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-[#F9FAFB] text-gray-900 pb-32 min-h-screen">
+
+    <!-- Top Bar (Full Width) -->
+    <header class="sticky top-0 z-40 bg-[#F9FAFB]/95 backdrop-blur-sm border-b border-gray-100/50">
+        <div class="max-w-7xl mx-auto px-6 pt-4 pb-4">
+            <div class="flex justify-between items-center gap-8">
+                <!-- Location / Profile -->
+                <div class="flex items-center gap-6 min-w-max">
+                    <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden ring-2 ring-white shadow-sm flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=100&amp;q=80" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-1 mb-0.5">
+                            <div class="w-5 h-5 rounded-full bg-red-100 flex items-center justify-center">
+                                <i data-lucide="map-pin" class="w-3 h-3 text-red-500 fill-current"></i>
+                            </div>
+                            <span class="font-bold text-gray-900 text-sm tracking-tight">Buenos Aires</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 stroke-[2.5]"></i>
+                        </div>
+                        <p class="text-gray-400 text-xs font-medium ml-0.5 truncate max-w-[200px]">Av. Libertador 1234, Palermo</p>
+                    </div>
+                </div>
+
+                <!-- Search Bar (Expanded on Web) -->
+                <div class="relative group w-full max-w-md hidden sm:block">
+                    <i data-lucide="search" class="absolute left-4 top-3 w-4 h-4 text-gray-400 group-focus-within:text-red-500 transition-colors"></i>
+                    <input type="text" placeholder="Buscar 'Hamburguesa'" class="w-full bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.05)] rounded-2xl py-2.5 pl-11 pr-12 text-sm text-gray-700 placeholder-gray-400 outline-none focus:ring-2 focus:ring-red-500/20 transition-all border border-gray-100">
+                    <div class="absolute right-3 top-2.5 bg-gray-100 px-1.5 py-0.5 rounded text-[10px] font-bold text-gray-400 tracking-wide border border-gray-200">CMD+K</div>
+                </div>
+
+                <!-- Mobile Search Icon (Only visible on small screens) -->
+                <button class="w-10 h-10 bg-white rounded-full shadow-sm flex items-center justify-center border border-gray-100 sm:hidden text-gray-600">
+                    <i data-lucide="search" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            
+            <!-- LEFT COLUMN: Content (8 cols) -->
+            <div class="lg:col-span-8 space-y-8">
+                
+                <!-- Banner -->
+                <div class="relative overflow-hidden rounded-[32px] shadow-[0_15px_40px_-10px_rgba(239,68,68,0.3)] bg-gradient-to-r from-[#FF4B4B] to-[#FF8F71]">
+                    <div class="absolute right-0 top-0 h-full w-1/2 bg-white/10 transform skew-x-12 translate-x-20"></div>
+                    <div class="relative p-8 md:p-10 flex items-center justify-between z-10">
+                        <div class="text-white">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="bg-white/20 px-2 py-1 rounded-lg text-white backdrop-blur-md flex items-center gap-1.5">
+                                <i data-lucide="credit-card" class="w-4 h-4"></i>
+                                <span class="font-semibold text-xs">Bless Pay</span>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl md:text-4xl font-bold leading-tight mb-2 tracking-tight">30% OFF</h3>
+                            <p class="text-white/90 text-sm font-medium max-w-[200px] md:max-w-none">Descuento exclusivo pagando con la App en tu primera compra.</p>
+                        </div>
+                        <button class="bg-white text-red-500 text-sm font-bold py-3 px-6 rounded-full shadow-lg hover:scale-105 transition-transform active:scale-95">
+                            Canjear ahora
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Category Icons -->
+                <div class="flex gap-6 overflow-x-auto no-scrollbar pb-2">
+                    <button onclick="filterCategory('all')" class="flex flex-col items-center gap-3 group min-w-[80px]">
+                        <div class="w-20 h-20 bg-white rounded-3xl shadow-sm flex items-center justify-center border border-gray-100 group-hover:scale-105 transition-transform group-hover:shadow-md group-hover:border-red-100">
+                            <span class="text-3xl">🔥</span>
+                        </div>
+                        <span class="text-sm font-medium text-gray-600 group-hover:text-gray-900">Todos</span>
+                    </button>
+                    <button onclick="filterCategory('hamburguesas')" class="flex flex-col items-center gap-3 group min-w-[80px]">
+                        <div class="w-20 h-20 bg-white rounded-3xl shadow-sm flex items-center justify-center border border-gray-100 group-hover:scale-105 transition-transform group-hover:shadow-md group-hover:border-red-100">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" class="w-9 h-9 object-contain" alt="Burger">
+                        </div>
+                        <span class="text-sm font-medium text-gray-600 group-hover:text-gray-900">Burger</span>
+                    </button>
+                    <button onclick="filterCategory('pizzas')" class="flex flex-col items-center gap-3 group min-w-[80px]">
+                        <div class="w-20 h-20 bg-white rounded-3xl shadow-sm flex items-center justify-center border border-gray-100 group-hover:scale-105 transition-transform group-hover:shadow-md group-hover:border-red-100">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png" class="w-9 h-9 object-contain" alt="Pizza">
+                        </div>
+                        <span class="text-sm font-medium text-gray-600 group-hover:text-gray-900">Pizza</span>
+                    </button>
+                    <button onclick="filterCategory('bebidas')" class="flex flex-col items-center gap-3 group min-w-[80px]">
+                        <div class="w-20 h-20 bg-white rounded-3xl shadow-sm flex items-center justify-center border border-gray-100 group-hover:scale-105 transition-transform group-hover:shadow-md group-hover:border-red-100">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2405/2405597.png" class="w-9 h-9 object-contain" alt="Juice">
+                        </div>
+                        <span class="text-sm font-medium text-gray-600 group-hover:text-gray-900">Bebidas</span>
+                    </button>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="flex items-center gap-8 border-b border-gray-100 pb-4">
+                    <button class="text-xl font-bold text-gray-900 relative group">
+                        Explorar Menú
+                        <span class="absolute -bottom-4 left-0 w-full h-0.5 bg-red-500 rounded-full"></span>
+                    </button>
+                    <button class="text-xl font-medium text-gray-400 hover:text-gray-600 transition-colors">
+                        Más Pedidos
+                    </button>
+                    <button class="text-xl font-medium text-gray-400 hover:text-gray-600 transition-colors">
+                        Nuevos
+                    </button>
+                </div>
+
+                <!-- Product Grid (Responsive) -->
+                <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Products injected here -->
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Sidebar / Checkout (4 cols) -->
+            <div class="lg:col-span-4 relative">
+                <div class="sticky top-28 space-y-6">
+                    
+                    <!-- Desktop Order Summary / Form -->
+                    <div class="bg-white rounded-[32px] p-6 shadow-lg shadow-gray-100/50 border border-gray-100">
+                        <div class="flex items-center gap-3 mb-6 border-b border-gray-100 pb-4">
+                            <div class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-white shadow-md shadow-gray-900/20">
+                                <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-base font-bold text-gray-900">Tu Pedido</h3>
+                                <p class="text-xs text-gray-400 font-medium">Delivery • 35-45 min</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Customer Form Inputs -->
+                        <div class="space-y-3 mb-6">
+                            <div class="group relative">
+                                <i data-lucide="user" class="absolute left-4 top-3.5 w-4 h-4 text-gray-400 group-focus-within:text-red-500 transition-colors"></i>
+                                <input type="text" id="customer-name" placeholder="Nombre completo" class="w-full bg-gray-50 rounded-2xl pl-11 pr-4 py-3.5 text-sm outline-none focus:bg-white focus:ring-2 focus:ring-red-100 transition-all border border-transparent focus:border-red-200">
+                            </div>
+                            <div class="group relative">
+                                <i data-lucide="map-pin" class="absolute left-4 top-3.5 w-4 h-4 text-gray-400 group-focus-within:text-red-500 transition-colors"></i>
+                                <input type="text" id="customer-address" placeholder="Dirección de entrega" class="w-full bg-gray-50 rounded-2xl pl-11 pr-4 py-3.5 text-sm outline-none focus:bg-white focus:ring-2 focus:ring-red-100 transition-all border border-transparent focus:border-red-200">
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="relative">
+                                    <select id="delivery-method" class="w-full bg-gray-50 rounded-2xl px-4 py-3.5 text-sm text-gray-600 outline-none focus:bg-white focus:ring-2 focus:ring-red-100 appearance-none font-medium border border-transparent focus:border-red-200 cursor-pointer">
+                                        <option value="Delivery">Delivery</option>
+                                        <option value="Retiro">Retiro</option>
+                                    </select>
+                                    <i data-lucide="chevron-down" class="absolute right-4 top-4 w-4 h-4 text-gray-400 pointer-events-none"></i>
+                                </div>
+                                <div class="relative">
+                                    <div class="w-full bg-gray-50 rounded-2xl px-4 py-3.5 text-sm text-gray-400 font-medium border border-transparent flex items-center justify-between cursor-not-allowed">
+                                        <span>Efectivo</span>
+                                        <i data-lucide="banknote" class="w-4 h-4"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <textarea id="customer-notes" placeholder="Notas para la cocina (sin cebolla, etc)..." class="w-full bg-gray-50 rounded-2xl px-4 py-3.5 text-sm outline-none focus:bg-white focus:ring-2 focus:ring-red-100 transition-all h-24 resize-none border border-transparent focus:border-red-200"></textarea>
+                        </div>
+
+                        <!-- Order Totals (Visible on Desktop) -->
+                        <div class="space-y-3 py-4 border-t border-dashed border-gray-200">
+                            <div class="flex justify-between items-center text-sm text-gray-500">
+                                <span>Subtotal</span>
+                                <span class="font-medium" id="desktop-subtotal">$0.00</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm text-gray-500">
+                                <span>Envío</span>
+                                <span class="font-medium text-green-600">Gratis</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-2">
+                                <span class="text-lg font-bold text-gray-900">Total</span>
+                                <span class="text-2xl font-bold text-gray-900 tracking-tight" id="desktop-total">$0.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Desktop Action Button -->
+                        <button onclick="sendToWhatsapp()" class="w-full bg-[#1F2937] text-white py-4 rounded-2xl font-bold text-sm hover:bg-gray-800 hover:shadow-lg active:scale-[0.98] transition-all flex items-center justify-center gap-2 group mt-2">
+                            <span>Confirmar Pedido</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                        
+                        <p class="text-center text-[10px] text-gray-400 mt-4 font-medium">
+                            Al confirmar, te redirigiremos a WhatsApp para finalizar.
+                        </p>
+                    </div>
+                    
+                    <!-- Promo Box Side -->
+                    <div class="bg-yellow-50 rounded-3xl p-5 border border-yellow-100 flex items-start gap-3">
+                        <div class="bg-yellow-100 p-2 rounded-full text-yellow-600 flex-shrink-0">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-yellow-800">Gana Puntos Bless</h4>
+                            <p class="text-xs text-yellow-700/80 mt-1 leading-relaxed">Sumas puntos con cada pedido que hagas a través de la web.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Sticky Bottom Cart (Hidden on LG screens) -->
+    <div id="sticky-cart" class="fixed bottom-6 left-6 right-6 max-w-md mx-auto transform translate-y-[150%] transition-transform duration-500 cubic-bezier(0.34, 1.56, 0.64, 1) z-50 lg:hidden">
+        <div class="bg-[#1F2937] text-white rounded-[24px] p-4 pr-5 flex justify-between items-center shadow-2xl shadow-gray-900/30 relative overflow-hidden">
+            <div class="absolute inset-0 bg-white/5 backdrop-blur-sm pointer-events-none"></div>
+            <div class="relative flex items-center gap-4 z-10">
+                <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-yellow-400 font-bold text-lg">
+                   <span id="cart-count-badge">0</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-[10px] text-gray-400 uppercase tracking-widest font-semibold">Total</span>
+                    <span id="cart-total" class="text-xl font-bold tracking-tight text-white">$0.00</span>
+                </div>
+            </div>
+            <button onclick="sendToWhatsapp()" class="relative z-10 bg-white text-gray-900 px-6 py-3 rounded-xl font-bold text-sm hover:bg-gray-50 active:scale-95 transition-all flex items-center gap-2 shadow-lg">
+                <span>Pedir</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 stroke-[2.5]"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                category: 'hamburguesas',
+                name: 'Spicy Chicken',
+                sub: 'Pollo frito, salsa picante',
+                price: 12000,
+                time: '32 Min',
+                image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+            },
+            {
+                id: 2,
+                category: 'hamburguesas',
+                name: 'Double Cheese',
+                sub: 'Carne smash, cheddar x3',
+                price: 10500,
+                time: '25 Min',
+                image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+            },
+            {
+                id: 3,
+                category: 'pizzas',
+                name: 'Napolitana',
+                sub: 'Tomate, ajo, mozzarella',
+                price: 14000,
+                time: '40 Min',
+                image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+            },
+            {
+                id: 4,
+                category: 'pizzas',
+                name: 'Pepperoni',
+                sub: 'Mozzarella y pepperoni',
+                price: 15500,
+                time: '35 Min',
+                image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+            },
+            {
+                id: 5,
+                category: 'bebidas',
+                name: 'Jugo Naranja',
+                sub: 'Exprimido natural 500ml',
+                price: 3500,
+                time: '10 Min',
+                image: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+            },
+            {
+                id: 6,
+                category: 'bebidas',
+                name: 'Coca Cola',
+                sub: 'Lata 354ml bien fría',
+                price: 2500,
+                time: '5 Min',
+                image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+            }
+        ];
+
+        let cart = {};
+        const PHONE_NUMBER = "5491112345678";
+        window.currentFilter = 'all';
+
+        function renderProducts(filter = 'all') {
+            const container = document.getElementById('product-grid');
+            container.innerHTML = '';
+
+            const filtered = filter === 'all' 
+                ? products 
+                : products.filter(p => p.category === filter);
+
+            filtered.forEach(product => {
+                const quantity = cart[product.id] ? cart[product.id].qty : 0;
+                
+                const html = `
+                    <div class="group relative bg-white rounded-[32px] p-4 flex items-center gap-5 shadow-sm border border-gray-100 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:border-gray-200 transition-all duration-300 h-full">
+                        
+                        <!-- Image -->
+                        <div class="relative w-[110px] h-[110px] flex-shrink-0 rounded-[24px] overflow-hidden">
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            ${quantity > 0 ? `<div class="absolute inset-0 bg-black/20 backdrop-blur-[1px] flex items-center justify-center transition-all"><i data-lucide="check" class="text-white w-6 h-6 stroke-[3]"></i></div>` : ''}
+                        </div>
+
+                        <!-- Content -->
+                        <div class="flex-grow py-1 flex flex-col justify-between h-full">
+                            <div>
+                                <div class="flex justify-between items-start">
+                                    <h3 class="text-lg font-bold text-gray-900 leading-tight mb-1">${product.name}</h3>
+                                </div>
+                                <p class="text-sm text-gray-400 font-medium mb-3 line-clamp-2">${product.sub}</p>
+                            </div>
+                            
+                            <div class="flex items-center justify-between mt-auto">
+                                <span class="text-lg font-bold text-gray-900">$${(product.price/1000).toFixed(1)}k</span>
+                                
+                                ${quantity === 0 ? `
+                                    <button onclick="updateCart(${product.id}, 1)" class="w-10 h-10 bg-gray-50 text-gray-900 rounded-xl flex items-center justify-center hover:bg-gray-900 hover:text-white hover:shadow-lg transition-all duration-200">
+                                        <i data-lucide="plus" class="w-5 h-5"></i>
+                                    </button>
+                                ` : `
+                                    <div class="flex items-center bg-gray-900 rounded-xl p-1 gap-2 shadow-lg shadow-gray-900/20">
+                                        <button onclick="updateCart(${product.id}, -1)" class="w-8 h-8 flex items-center justify-center text-white hover:text-red-400 transition-colors">
+                                            <i data-lucide="minus" class="w-4 h-4"></i>
+                                        </button>
+                                        <span class="text-sm font-bold text-white w-4 text-center">${quantity}</span>
+                                        <button onclick="updateCart(${product.id}, 1)" class="w-8 h-8 flex items-center justify-center text-white hover:text-green-400 transition-colors">
+                                            <i data-lucide="plus" class="w-4 h-4"></i>
+                                        </button>
+                                    </div>
+                                `}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+            lucide.createIcons();
+        }
+
+        function updateCart(id, change) {
+            const product = products.find(p => p.id === id);
+            if (!cart[id]) cart[id] = { ...product, qty: 0 };
+            cart[id].qty += change;
+            if (cart[id].qty <= 0) delete cart[id];
+            updateUI();
+        }
+
+        function updateUI() {
+            renderProducts(window.currentFilter);
+
+            const total = Object.values(cart).reduce((acc, item) => acc + (item.price * item.qty), 0);
+            const count = Object.values(cart).reduce((acc, item) => acc + item.qty, 0);
+            const formattedTotal = `$${total.toLocaleString()}`;
+            
+            // Mobile Floating Cart
+            const cartEl = document.getElementById('sticky-cart');
+            document.getElementById('cart-total').innerText = formattedTotal;
+            document.getElementById('cart-count-badge').innerText = count;
+            
+            if (total > 0) {
+                cartEl.classList.remove('translate-y-[150%]');
+            } else {
+                cartEl.classList.add('translate-y-[150%]');
+            }
+
+            // Desktop Sidebar UI
+            document.getElementById('desktop-subtotal').innerText = formattedTotal;
+            document.getElementById('desktop-total').innerText = formattedTotal;
+        }
+
+        function filterCategory(category) {
+            window.currentFilter = category;
+            renderProducts(category);
+        }
+
+        function sendToWhatsapp() {
+            const name = document.getElementById('customer-name').value;
+            const address = document.getElementById('customer-address').value;
+            const method = document.getElementById('delivery-method').value;
+            const notes = document.getElementById('customer-notes').value;
+
+            if (Object.keys(cart).length === 0) {
+                alert("El carrito está vacío. ¡Agrega algo rico!");
+                return;
+            }
+            
+            if (!name || !address) {
+                alert("Por favor completa tu nombre y dirección para el envío.");
+                document.getElementById('customer-name').focus();
+                return;
+            }
+
+            let message = `👋 Hola *BLESS*, soy ${name}.\n📍 *${method}:* ${address}\n\n🛒 *Mi Pedido Web:*\n`;
+            let total = 0;
+            Object.values(cart).forEach(item => {
+                const subtotal = item.price * item.qty;
+                message += `▪️ ${item.qty}x ${item.name} ($${subtotal})\n`;
+                total += subtotal;
+            });
+            message += `\n💵 *Total: $${total.toLocaleString()}*`;
+            if(notes) message += `\n📝 Nota: ${notes}`;
+
+            window.open(`https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        renderProducts();
+    </script>
+
+</body></html>
